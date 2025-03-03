@@ -1,0 +1,25 @@
+Ödev 1, Emirhan Cerah, cerrahemirhan5353@gmail.com
+
+SELECT FirstName FROM employees
+SELECT LastName FROM employees
+SELECT Salary FROM employees
+(Select ile seçmek istediğimiz sütunu belirtiyoruz. From ile de bu sütunun çekileceği veriyi belirtiyoruz)
+
+
+SELECT DISTINCT departments.departmentname 
+FROM employees
+JOIN departments ON employees.departmentid = departments.departmentid;
+(Select Dısstance ile tekrar eden verileri kaldırıyoruz. Employees tablosuna ilaveten employees.departmentid ve departments.departmenti de eklemiş oluyoruz. ON komutunun içinde sadece eşitlik değil, her tür karşılaştırma işlemi kullanılabilir. JOİN komutu sonrası çağrılan veride olup employees de olmayan veri eğer ON sonrası seçilen operatörde çağrılan bir veriyse sütuna ekleniyor. )
+
+SELECT * FROM employees
+JOIN departments ON employees.departmentid = departments.departmentid
+WHERE departments.departmentname = 'IT';
+(Select * ile tüm sütunları çekeriz veri ise employees. Departments verilerini join ile ekleriz, eşitlik sayesinde doğru eşleme olur. Bir koşul koyarız onu da where ile belirtiriz bu koşul sayesinde sadece şunları göster ibaresi ortaya çıkar)
+
+SELECT * FROM employees 
+ORDER BY salary DESC;
+(Employees verisinden tüm sütunlar çekilir ORDER BY ile hangi sütuna göre işlem yapılacağı verilir ardından salary sütunu büyükten küçüğe doğru DESC komutu sayesinde sıralanır. DESC komutunun zıttı ASC dir.)
+
+SELECT CONCAT(FirstName, ' ', LastName) AS FullName, * 
+FROM employees;
+(SELECT * FROM employees ile çağrılan sütunların yanı sıra ilaveten bir sütun daha oluşturmak adına AS komutu kullanılıyor. Employees deki verileri birleştirerek yeni sütun oluşturmak için CONCAT komutu kullanıyoruz. Eğer CONCAT kullanılmazsa Veri1,,Veri2 çıktı şeklinde yeni sütun verileri oluşur. )
