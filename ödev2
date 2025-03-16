@@ -1,0 +1,25 @@
+ödev 2  -  Emirhan Cerah - cerrahemirhan5353@gmail.com
+-----------------------------
+SELECT COUNT(*) 
+FROM invoice
+WHERE 
+    invoice_date IS NULL 
+    AND billing_address IS NULL 
+    AND billing_city IS NULL 
+    AND billing_state IS NULL 
+    AND billing_country IS NULL 
+    AND billingpostal_code IS NULL 
+    AND total IS NULL;
+
+
+-----------------------------
+SELECT 
+	total as eski_total,
+	total * 2 as yeni_total
+from invoice
+order by yeni_total desc
+
+-----------------------------
+SELECT 
+	LEFT(billing_address, 3) || RIGHT(billing_address, 4) as "Açık_adres"
+FROM invoice
