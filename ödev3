@@ -1,0 +1,49 @@
+
+SELECT count(*) from invoice
+WHERE billing_country = 'USA'and
+	invoice_date BETWEEN '2009-01-01 ' and '2009-12-31'
+
+AÇIKLAMA: invoice tablosundan tüm satırları saymak için count(*) komutu kullandım. Koşul olarak Where keyword'ünden sonra bölgeyi USA olarak belirledim ve 
+belirli tarihlerin arasındaki değerleri almak için BETWEEN keyword'ü kullandım.
+------------------------------------
+
+SELECT 
+    track.track_id,
+    track.name AS track_name,
+    track.album_id,
+    track.mediatype_id,
+    track.genre_id,
+    track.composer,
+    track.milliseconds,
+    track.bytes,
+    track.unitprice,
+    playlisttrack.playlist_id,
+    playlist.name AS playlist_name
+FROM track
+JOIN playlisttrack ON track.track_id = playlisttrack.track_id
+JOIN playlist ON playlisttrack.playlist_id = playlist.playlist_id;
+
+AÇIKLAMA: track tablosunun tüm sütunlarına ilaveten playlist_id ve playlist_name sütunda belirtmek adına SELECT keyword'ünden From keywordü arasında yazdım.
+Joın komutları ile tabloları kesiştirdim joın başına bir şey yazmadığım için INNER JOIN olarak kabul etti.
+-----------------------------
+
+SELECT
+    track.track_id,
+    track.name AS track_name,
+	track.album_id,
+	track.mediatype_id,
+    track.genre_id,
+    track.composer,
+    ROUND(track.milliseconds / 60000.0, 2) || ' dk' as minutes,   --Burada ekstra olarak millisecondu minutes'e çevirdim daha güzel gözüksün diyerekten :)
+    track.bytes,
+    track.unitprice,
+	artist.name as artist_name,
+	artist.artist_id
+FROM public.track
+JOIN album ON album.album_id = track.album_id
+JOIN artist ON artist.name = track.composer
+where title = 'Let There Be Rock'
+ORDER BY track.milliseconds DESC
+
+AÇIKLAMA: Bu soru 2. soruya benzerdi ancak ekstra olarak where (koşul) ekledik. Title sütununda 'Let There Be Rock' başlıktaki albümleri seçmiş olduk. Son olarak
+Order By ile satırlarımızı track.milliseconds büyükten küçüğe sıraladık. Bir de ekstra olarak millisecondu minutes'e çevirdim hoşunuza gideceğini düşünerekten :)
