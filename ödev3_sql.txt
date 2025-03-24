@@ -1,3 +1,4 @@
+Ödev 3, Emirhan Cerah, cerrahemirhan5353@gmail.com
 
 SELECT count(*) from invoice
 WHERE billing_country = 'USA'and
